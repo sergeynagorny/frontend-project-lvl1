@@ -1,6 +1,7 @@
 import Cli from './cli.js';
 import EvenGame from './games/even-game.js';
 import CalcGame from './games/calc-game.js';
+import GcdGame from './games/gcd-game.js';
 
 const ROUNDS_COUNT = 3;
 const LIVES_COUNT = 1;
@@ -28,6 +29,10 @@ class App {
 
     startCalcGame() {
         this.calcGame = new CalcGame(this.gamesInitialValue);
+    }
+
+    startGcdGame() {
+        this.gcdGame = new GcdGame(this.gamesInitialValue);
     }
 }
 
