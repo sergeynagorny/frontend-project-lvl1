@@ -2,4 +2,4 @@
 import app from '../src/index.js';
 
 app.init();
-app.startEvenGame();
+app.startCalcGame();
