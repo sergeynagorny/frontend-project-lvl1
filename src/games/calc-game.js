@@ -12,7 +12,7 @@ const MathByOperator = {
   [Operator.MULTIPLY]: (x, y) => x * y,
 };
 
-export function calcGame() {
+export default function calcGame() {
   const operators = Object.values(Operator);
 
   return {

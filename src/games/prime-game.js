@@ -26,7 +26,7 @@ const eratosthenes = (n) => {
   return output;
 };
 
-export function primeGame() {
+export default function primeGame() {
   const MAX_NUM = 1000;
   const primeNumbers = eratosthenes(MAX_NUM);
 

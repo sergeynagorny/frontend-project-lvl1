@@ -1,9 +1,9 @@
 import { say, ask, greetings } from './cli.js';
-import { calcGame } from './games/calc-game.js';
-import { evenGame } from './games/even-game.js';
-import { gcdGame } from './games/gcd-game.js';
-import { progressionGame } from './games/progression-game.js';
-import { primeGame } from './games/prime-game.js';
+import calcGame from './games/calc-game.js';
+import evenGame from './games/even-game.js';
+import gcdGame from './games/gcd-game.js';
+import progressionGame from './games/progression-game.js';
+import primeGame from './games/prime-game.js';
 
 const ROUNDS = 3;
 const LIVES = 1;

@@ -1,6 +1,6 @@
 import { getRandomNumber } from '../lib.js';
 
-export function gcdGame() {
+export default function gcdGame() {
   return {
     createQuestion() {
       return `${getRandomNumber(1, 100)} ${getRandomNumber(1, 100)}`;

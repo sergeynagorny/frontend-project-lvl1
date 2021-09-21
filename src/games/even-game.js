@@ -1,6 +1,6 @@
 import { isEven, getRandomNumber } from '../lib.js';
 
-export function evenGame() {
+export default function evenGame() {
   return {
     createQuestion() {
       return getRandomNumber(1, 100);

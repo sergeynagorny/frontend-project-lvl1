@@ -20,7 +20,6 @@ parserOptions:
 
 rules:
   no-console: 0
-  import/prefer-default-export: 0
   fp/no-loops: 0
   fp/no-let: 0
   fp/no-mutation: 0
