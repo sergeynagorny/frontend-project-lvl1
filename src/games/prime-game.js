@@ -8,19 +8,19 @@ const eratosthenes = (n) => {
     const upperLimit = Math.sqrt(n);
     const output = [];
 
-    for (let i = 0; i < n; i += i) {
+    for (let i = 0; i < n; i += 1) {
         array.push(true);
     }
 
-    for (let i = 2; i <= upperLimit; i += i) {
+    for (let i = 2; i <= upperLimit; i += 1) {
         if (array[i]) {
-            for (let j = i * i; j < n; j += i) {
+            for (let j = i * i; j < n; j += 1) {
                 array[j] = false;
             }
         }
     }
 
-    for (let i = 2; i < n; i += i) {
+    for (let i = 2; i < n; i += 1) {
         if (array[i]) {
             output.push(i);
         }
