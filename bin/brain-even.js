@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import app from '../src/index.js';
+import { startGame, GameType } from '../src/index.js';
 
-app.init();
-app.startEvenGame();
+startGame(GameType.EVEN);
