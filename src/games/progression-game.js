@@ -35,7 +35,7 @@ const setMissing = (progression) => {
   return progression.map((item, index) => (index === missingIndex ? '..' : item)).join(' ');
 };
 
-export function progressionGame() {
+export default function progressionGame() {
   return {
     createQuestion() {
       const progression = createProgression();
