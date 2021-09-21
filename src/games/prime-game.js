@@ -1,7 +1,4 @@
-import AbstractGame from './abstract-game.js';
 import { getRandomNumber } from '../lib.js';
-
-const MAX_NUM = 1000;
 
 const eratosthenes = (n) => {
   const array = [];
@@ -29,18 +26,16 @@ const eratosthenes = (n) => {
   return output;
 };
 
-const primeNumbers = eratosthenes(MAX_NUM);
+export function primeGame() {
+  const MAX_NUM = 1000;
+  const primeNumbers = eratosthenes(MAX_NUM);
 
-export default class PrimeGame extends AbstractGame {
-  intro() {
-    this.cli.say('Answer "yes" if given number is prime. Otherwise answer "no".');
-  }
-
-  getCorrectAnswer(question) {
-    return primeNumbers.includes(question) ? 'yes' : 'no';
-  }
-
-  createQuestion() {
-    return getRandomNumber(2, MAX_NUM);
-  }
+  return {
+    createQuestion() {
+      return getRandomNumber(2, MAX_NUM);
+    },
+    getCorrectAnswer(question) {
+      return primeNumbers.includes(question) ? 'yes' : 'no';
+    },
+  };
 }

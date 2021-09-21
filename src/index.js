@@ -1,51 +1,75 @@
-import Cli from './cli.js';
-import EvenGame from './games/even-game.js';
-import CalcGame from './games/calc-game.js';
-import GcdGame from './games/gcd-game.js';
-import ProgressionGame from './games/progression-game.js';
-import PrimeGame from './games/prime-game.js';
+import { say, ask, greetings } from './cli.js';
+import { calcGame } from './games/calc-game.js';
+import { evenGame } from './games/even-game.js';
+import { gcdGame } from './games/gcd-game.js';
+import { progressionGame } from './games/progression-game.js';
+import { primeGame } from './games/prime-game.js';
 
-const ROUNDS_COUNT = 3;
-const LIVES_COUNT = 1;
+const ROUNDS = 3;
+const LIVES = 1;
 
-class App {
-  constructor() {
-    this.cli = null;
+export const GameType = {
+  EVEN: 'EVEN',
+  CALC: 'CALC',
+  GCD: 'GDC',
+  PROGRESSION: 'PROGRESSION',
+  PRIME: 'PRIME',
+};
+
+const GameIntroByType = {
+  [GameType.EVEN]: 'Answer "yes" if the number is even, otherwise answer "no".',
+  [GameType.CALC]: 'What is the result of the expression?',
+  [GameType.GCD]: 'Find the greatest common divisor of given numbers.',
+  [GameType.PROGRESSION]: 'What number is missing in the progression.',
+  [GameType.PRIME]: 'Answer "yes" if given number is prime. Otherwise answer "no".',
+};
+
+const GameCoreByType = {
+  [GameType.EVEN]: evenGame(),
+  [GameType.CALC]: calcGame(),
+  [GameType.GCD]: gcdGame(),
+  [GameType.PROGRESSION]: progressionGame(),
+  [GameType.PRIME]: primeGame(),
+};
+
+const startRound = (gameCore) => {
+  const question = gameCore.createQuestion();
+  const userAnswer = ask(question);
+  const correctAnswer = gameCore.getCorrectAnswer(question);
+  const isAnswerCorrect = correctAnswer === userAnswer;
+
+  if (isAnswerCorrect) {
+    say('Correct!');
+  } else {
+    say(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
   }
 
-  init() {
-    this.cli = new Cli();
-    const userName = this.cli.greetings();
+  return isAnswerCorrect;
+};
 
-    this.gamesInitialValue = {
-      cli: this.cli,
-      errorsCount: LIVES_COUNT,
-      roundsCount: ROUNDS_COUNT,
-      userName,
-    };
+export const startGame = (type) => {
+  let rounds = ROUNDS;
+  let lives = LIVES;
+
+  say('Welcome to the Brain Games!');
+  const userName = greetings();
+  say(`Hello, ${userName}!`);
+
+  if (type === undefined) return;
+  say(GameIntroByType[type]);
+
+  while (rounds !== 0 && lives !== 0) {
+    const isAnswerCorrect = startRound(GameCoreByType[type]);
+    if (isAnswerCorrect) {
+      rounds -= 1;
+    } else {
+      lives -= 1;
+    }
   }
 
-  startEvenGame() {
-    this.evenGame = new EvenGame(this.gamesInitialValue);
+  if (lives === 0) {
+    say(`Let's try again, ${userName}!`);
+  } else {
+    say(`Congratulations, ${userName}!`);
   }
-
-  startCalcGame() {
-    this.calcGame = new CalcGame(this.gamesInitialValue);
-  }
-
-  startGcdGame() {
-    this.gcdGame = new GcdGame(this.gamesInitialValue);
-  }
-
-  startProgressionGame() {
-    this.progressionGame = new ProgressionGame(this.gamesInitialValue);
-  }
-
-  startPrimeGame() {
-    this.primeGame = new PrimeGame(this.gamesInitialValue);
-  }
-}
-
-const app = new App();
-
-export default app;
+};

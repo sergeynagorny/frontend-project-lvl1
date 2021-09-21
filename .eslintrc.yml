@@ -21,5 +21,11 @@ parserOptions:
 rules:
   no-console: 0
   import/prefer-default-export: 0
+  fp/no-loops: 0
+  fp/no-let: 0
+  fp/no-mutation: 0
+  fp/no-nil: 0
+  fp/no-unused-expression: 0
+  fp/no-mutating-methods: 0
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]

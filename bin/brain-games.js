@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import app from '../src/index.js';
+import { startGame } from '../src/index.js';
 
-app.init();
+startGame();

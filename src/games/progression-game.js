@@ -1,5 +1,4 @@
 import { getRandomNumber } from '../lib.js';
-import AbstractGame from './abstract-game.js';
 
 const findMissingUtil = (arr, low, high, diff) => {
   if (high <= low) return Number.MAX_VALUE;
@@ -36,18 +35,15 @@ const setMissing = (progression) => {
   return progression.map((item, index) => (index === missingIndex ? '..' : item)).join(' ');
 };
 
-export default class ProgressionGame extends AbstractGame {
-  intro() {
-    this.cli.say('What number is missing in the progression.');
-  }
-
-  getCorrectAnswer(question) {
-    const arr = question.split(' ').filter((item) => item !== '..').map(Number);
-    return findMissing(arr, arr.length);
-  }
-
-  createQuestion() {
-    const progression = createProgression();
-    return setMissing(progression);
-  }
+export function progressionGame() {
+  return {
+    createQuestion() {
+      const progression = createProgression();
+      return setMissing(progression);
+    },
+    getCorrectAnswer(question) {
+      const arr = question.split(' ').filter((item) => item !== '..').map(Number);
+      return findMissing(arr, arr.length).toString();
+    },
+  };
 }

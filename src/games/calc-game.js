@@ -1,4 +1,3 @@
-import AbstractGame from './abstract-game.js';
 import { getRandomElement, getRandomNumber } from '../lib.js';
 
 const Operator = {
@@ -13,25 +12,19 @@ const MathByOperator = {
   [Operator.MULTIPLY]: (x, y) => x * y,
 };
 
-const operators = Object.values(Operator);
+export function calcGame() {
+  const operators = Object.values(Operator);
 
-const calculateMathString = (str) => {
-  const elements = str.split(' ');
-  const operator = elements.find((item) => operators.includes(item));
-  const numbers = elements.filter((item) => item !== operator).map(Number);
-  return MathByOperator[operator](...numbers);
-};
+  return {
+    createQuestion() {
+      return `${getRandomNumber(1, 20)} ${getRandomElement(operators)} ${getRandomNumber(1, 20)}`;
+    },
 
-export default class CalcGame extends AbstractGame {
-  intro() {
-    this.cli.say('What is the result of the expression?');
-  }
-
-  getCorrectAnswer(question) {
-    return calculateMathString(question);
-  }
-
-  createQuestion() {
-    return `${getRandomNumber(1, 20)} ${getRandomElement(operators)} ${getRandomNumber(1, 20)}`;
-  }
+    getCorrectAnswer(question) {
+      const elements = question.split(' ');
+      const operator = elements.find((item) => operators.includes(item));
+      const numbers = elements.filter((item) => item !== operator).map(Number);
+      return MathByOperator[operator](...numbers).toString();
+    },
+  };
 }
