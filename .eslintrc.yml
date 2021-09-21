@@ -2,6 +2,7 @@
 
 plugins:
   - import
+  - fp
 
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
@@ -11,14 +12,13 @@ env:
 extends:
   - 'airbnb-base'
   - 'plugin:import/recommended'
+  - 'plugin:fp/recommended'
 
 parserOptions:
   ecmaVersion: 11
   sourceType: module
 
 rules:
-  indent: ["error", 4]
-  class-methods-use-this: 0
   no-console: 0
   import/prefer-default-export: 0
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
