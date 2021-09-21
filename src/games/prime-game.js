@@ -14,7 +14,7 @@ const eratosthenes = (n) => {
 
     for (let i = 2; i <= upperLimit; i += 1) {
         if (array[i]) {
-            for (let j = i * i; j < n; j += 1) {
+            for (let j = i * i; j < n; j += i) {
                 array[j] = false;
             }
         }
