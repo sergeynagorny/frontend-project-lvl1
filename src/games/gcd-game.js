@@ -22,6 +22,6 @@ export default class GcdGame extends AbstractGame {
     }
 
     createQuestion() {
-        return `${getRandomNumber(0, 100)} ${getRandomNumber(0, 100)}`;
+        return `${getRandomNumber(1, 100)} ${getRandomNumber(1, 100)}`;
     }
 }
